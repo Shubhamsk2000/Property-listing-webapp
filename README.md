@@ -95,8 +95,16 @@ property-app/
 Before you begin, ensure you have the following installed on your machine:
 
 - **Node.js**: Version 18.x or higher
-- **npm**: Version 8.x or higher (comes with Node.js)
+- **pnpm**: Version 8.x or higher (recommended) or **npm**: Version 8.x or higher
 - **Git**: For version control
+
+### Installing pnpm (Recommended)
+
+This project uses pnpm as the primary package manager. Install it globally:
+
+```bash
+npm install -g pnpm
+```
 
 ## 🚀 Getting Started
 
@@ -111,6 +119,14 @@ cd Property-listing-webapp/property-app
 
 ⚠️ **Important**: This project requires a specific installation method due to peer dependency conflicts with React 19.
 
+#### Using pnpm (Recommended)
+
+```bash
+pnpm install --legacy-peer-deps
+```
+
+#### Using npm (Alternative)
+
 ```bash
 npm install --legacy-peer-deps
 ```
@@ -120,6 +136,14 @@ The project uses React 19, but some dependencies (like `vaul@0.9.9`) have peer d
 
 ### 3. Start the Development Server
 
+#### Using pnpm (Recommended)
+
+```bash
+pnpm dev
+```
+
+#### Using npm (Alternative)
+
 ```bash
 npm run dev
 ```
@@ -128,11 +152,27 @@ The application will be available at [http://localhost:3000](http://localhost:30
 
 ### 4. Build for Production
 
+#### Using pnpm
+
+```bash
+pnpm build
+```
+
+#### Using npm
+
 ```bash
 npm run build
 ```
 
 ### 5. Start Production Server
+
+#### Using pnpm
+
+```bash
+pnpm start
+```
+
+#### Using npm
 
 ```bash
 npm start
@@ -140,12 +180,12 @@ npm start
 
 ## 📦 Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Starts the development server |
-| `npm run build` | Builds the app for production |
-| `npm start` | Runs the built app in production mode |
-| `npm run lint` | Runs the linter to check for code issues |
+| Script | pnpm | npm | Description |
+|--------|------|-----|-------------|
+| Development | `pnpm dev` | `npm run dev` | Starts the development server |
+| Build | `pnpm build` | `npm run build` | Builds the app for production |
+| Start | `pnpm start` | `npm start` | Runs the built app in production mode |
+| Lint | `pnpm lint` | `npm run lint` | Runs the linter to check for code issues |
 
 ## 🔧 Configuration
 
@@ -193,16 +233,26 @@ This project uses [shadcn/ui](https://ui.shadcn.com/) for consistent, accessible
 ### Common Issues
 
 1. **Dependency Installation Errors**
-   - Always use `npm install --legacy-peer-deps`
-   - Clear npm cache: `npm cache clean --force`
+   - Always use `pnpm install --legacy-peer-deps` or `npm install --legacy-peer-deps`
+   - Clear package manager cache: 
+     - pnpm: `pnpm store prune`
+     - npm: `npm cache clean --force`
 
 2. **Build Errors**
    - Ensure Node.js version is 18.x or higher
-   - Delete `node_modules` and reinstall dependencies
+   - Delete `node_modules` and package lock files, then reinstall:
+     ```bash
+     rm -rf node_modules pnpm-lock.yaml package-lock.json
+     pnpm install --legacy-peer-deps
+     # or
+     npm install --legacy-peer-deps
+     ```
 
 3. **Port Already in Use**
    - The default port is 3000. If it's occupied, Next.js will automatically use the next available port
-   - Or specify a custom port: `npm run dev -- -p 3001`
+   - Or specify a custom port: 
+     - pnpm: `pnpm dev --port 3001`
+     - npm: `npm run dev -- -p 3001`
 
 ### Getting Help
 
